@@ -3,6 +3,7 @@ import platform
 
 options = [
     './main.py',
+    '--name=Sector Mapper',
     '--onefile',
     '--windowed',
     '--clean'
