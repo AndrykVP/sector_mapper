@@ -79,5 +79,6 @@ class Application(tk.Frame):
 
 root = tk.Tk()
 root.title("Sector Mapper")
+root.eval('tk::PlaceWindow . center')
 app = Application(master=root)
 app.mainloop()
