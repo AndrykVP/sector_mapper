@@ -36,7 +36,7 @@ def make_polygon(point_list):
 
 
 # Function to create the Spreadsheet
-def make_spreadsheet(sector_name, sector_shape, systems_list, path):
+def make_spreadsheet(sector_name, sector_shape, systems_list, path, colors):
 
     # Define the Spreadsheet's settings
     workbook = xlsxwriter.Workbook(f'{path}/{sector_name}.xlsx')
@@ -46,9 +46,9 @@ def make_spreadsheet(sector_name, sector_shape, systems_list, path):
         'font_size': '7',
         'bg_color': 'black',
         'align': 'center'})
-    empty_grid = workbook.add_format({'bg_color': '#0201ff'})
-    occupied_grid = workbook.add_format({'bg_color': '#48ff00'})
-    outside_grid = workbook.add_format({'bg_color': '#666666'})
+    empty_grid = workbook.add_format({'bg_color': colors[0]})
+    occupied_grid = workbook.add_format({'bg_color': colors[1]})
+    outside_grid = workbook.add_format({'bg_color': colors[2]})
 
     # Define columns and rows based on the Sector's polygon
     minx, miny, maxx, maxy = sector_shape.bounds
