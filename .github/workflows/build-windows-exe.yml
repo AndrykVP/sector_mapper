@@ -24,7 +24,7 @@ jobs:
           pip install -r requirements.txt
       - name: Build for Windows
         run: |
-        python builder.py
+          python builder.py
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
