@@ -32,7 +32,7 @@ def get_systems(systems_list):
 # Make the Polygon Object based on the points provided by Combine's API
 def make_polygon(point_list):
     points = [(point['attributes']['x'], point['attributes']['y']) for point in point_list]
-    return Polygon(points)
+    return Polygon(points).buffer(1.0)
 
 
 # Function to create the Spreadsheet
@@ -52,14 +52,14 @@ def make_spreadsheet(sector_name, sector_shape, systems_list, path, colors):
 
     # Define columns and rows based on the Sector's polygon
     minx, miny, maxx, maxy = sector_shape.bounds
-    columns = int(maxx - minx)
-    rows = int(maxy - miny)
+    columns = int(maxx - minx) + 1
+    rows = int(maxy - miny) + 1
 
     # Create the Headers (top row and left column)
     worksheet.write_blank(0, 0, None, coordinate_header)
-    worksheet.write_row(0, 1, range(int(minx), int(maxx)), coordinate_header)
-    worksheet.write_column(1, 0, reversed(range(int(miny), int(maxy))), coordinate_header)
-    worksheet.set_column_pixels(0, columns+1, 24)
+    worksheet.write_row(0, 1, range(int(minx), int(maxx) + 1), coordinate_header)
+    worksheet.write_column(1, 0, reversed(range(int(miny), int(maxy) + 1)), coordinate_header)
+    worksheet.set_column_pixels(0, columns + 1, 24)
     worksheet.freeze_panes(1, 1)
 
     # Format cells based on the Sector's Polygon and the known Systems
@@ -68,7 +68,7 @@ def make_spreadsheet(sector_name, sector_shape, systems_list, path, colors):
         row = 1
         x_coord = int(minx + column - 1)
         while row <= rows:
-            y_coord = int(maxy - row)
+            y_coord = int(maxy - row + 1)
             cell = Point(x_coord, y_coord)
             if sector_shape.contains(cell):
                 if cell in systems_list:
@@ -82,3 +82,4 @@ def make_spreadsheet(sector_name, sector_shape, systems_list, path, colors):
 
     # Save and close the Spreadsheet
     workbook.close()
+
