@@ -35,5 +35,5 @@ exe = EXE(pyz,
 app = BUNDLE(exe,
              name='Sector Mapper.app',
              icon='./assets/icon.icns',
-             bundle_identifier=None,
+             bundle_identifier=com.andrykvp.sector_mapper,
              version='1.0.0')
