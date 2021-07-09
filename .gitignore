@@ -2,6 +2,7 @@
 /.venv/
 
 # Exculde build directories.
+/build/*
 /dist/*
 /__pycache__
 Sector Mapper.spec
