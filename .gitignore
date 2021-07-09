@@ -1,2 +1,7 @@
 # Project exclude paths
 /.venv/
+
+# Exculde build directories.
+/dist/*
+/__pycache__
+Sector Mapper.spec
